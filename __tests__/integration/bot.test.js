@@ -61,6 +61,15 @@ describe('Bot integration', () => {
         }));
         axios = require('axios'); 
 
+        // Mock the cache service to always return null (cache miss)
+        jest.doMock('../../src/services/cache', () => ({
+            init: jest.fn(),
+            findInCache: jest.fn().mockReturnValue(null),
+            addToCache: jest.fn(),
+            getStats: jest.fn(),
+            pruneCache: jest.fn()
+        }));
+
         conversation = require('../../src/utils/conversation');
 
         // Import the main application entry point AFTER mocks are set up

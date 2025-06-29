@@ -14,6 +14,7 @@ Aszune AI Bot is built using Node.js and the Discord.js library, with the Perple
 4. **Conversation Manager** - Tracks and stores user conversations
 5. **Rate Limiter** - Prevents spam and excessive API usage
 6. **Emoji Manager** - Handles emoji reactions based on keywords
+7. **Smart Answer Cache** - Caches frequent questions and answers to reduce API usage
 
 ## Project Structure
 
@@ -196,6 +197,156 @@ function isRateLimited(userId) {
   return false;
 }
 ```
+
+### 6. Smart Answer Cache
+
+The cache system is designed to store and retrieve frequent questions and answers to reduce API token usage.
+
+```javascript
+// Simplified example
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+
+class CacheService {
+  constructor() {
+    this.cache = {};
+    this.initialized = false;
+  }
+  
+  // Initialize cache from disk storage
+  init() {
+    if (this.initialized) return;
+    
+    try {
+      // Load cache from disk or create new
+      if (fs.existsSync(CACHE_FILE_PATH)) {
+        const cacheData = fs.readFileSync(CACHE_FILE_PATH, 'utf8');
+        this.cache = JSON.parse(cacheData);
+      } else {
+        this.saveCache();
+      }
+      this.initialized = true;
+    } catch (error) {
+      // Handle errors
+      this.cache = {};
+      this.saveCache();
+    }
+  }
+  
+  // Find a cached response for a question
+  findInCache(question) {
+    // Try direct hash lookup first
+    const hash = this.generateHash(question);
+    if (this.cache[hash]) {
+      // Update access metrics
+      const entry = this.cache[hash];
+      entry.accessCount += 1;
+      entry.lastAccessed = Date.now();
+      
+      // Check if entry is stale
+      if (this.isStale(entry)) {
+        return { ...entry, needsRefresh: true };
+      }
+      return entry;
+    }
+    
+    // If no direct hit, try similarity matching
+    for (const key of Object.keys(this.cache)) {
+      const entry = this.cache[key];
+      const similarity = this.calculateSimilarity(question, entry.question);
+      
+      if (similarity > SIMILARITY_THRESHOLD) {
+        // Update access metrics
+        entry.accessCount += 1;
+        entry.lastAccessed = Date.now();
+        
+        // Check if entry is stale
+        if (this.isStale(entry)) {
+          return { ...entry, needsRefresh: true, similarity };
+        }
+        return { ...entry, similarity };
+      }
+    }
+    
+    // No match found
+    return null;
+  }
+  
+  // Add a new entry to the cache
+  addToCache(question, answer, gameContext = null) {
+    const hash = this.generateHash(question);
+    const now = Date.now();
+    
+    this.cache[hash] = {
+      questionHash: hash,
+      question,
+      answer,
+      gameContext,
+      timestamp: now,
+      accessCount: 1,
+      lastAccessed: now
+    };
+    
+    this.saveCache();
+  }
+}
+```
+
+#### Cache Integration with Chat Flow
+
+The cache is integrated into the chat message handling process:
+
+```javascript
+async function handleChatMessage(message) {
+  // ... existing message handling ...
+  
+  try {
+    // Extract the user's question
+    const userQuestion = message.content;
+    let reply;
+    let fromCache = false;
+    
+    // Try to find the question in the cache first
+    const cacheResult = cacheService.findInCache(userQuestion);
+    
+    if (cacheResult) {
+      // Cache hit!
+      reply = cacheResult.answer;
+      fromCache = true;
+      
+      // If the entry needs a refresh (is stale), update it in the background
+      if (cacheResult.needsRefresh) {
+        // Don't await this to avoid delaying the response
+        refreshCacheEntry(userQuestion, userId);
+      }
+    } else {
+      // Cache miss - call the API
+      const history = conversationManager.getHistory(userId);
+      reply = await perplexityService.generateChatResponse(history);
+      
+      // Add the new Q&A pair to the cache
+      cacheService.addToCache(userQuestion, reply);
+    }
+    
+    // ... continue with response formatting and sending ...
+  } catch (error) {
+    // ... error handling ...
+  }
+}
+```
+
+#### Key Features of the Cache System:
+
+1. **Hash-based Storage**: Questions are hashed for efficient lookup
+2. **Similarity Matching**: Can find similar questions using word overlap algorithm
+3. **Access Metrics**: Tracks usage patterns (frequency, last accessed)
+4. **Automatic Refreshing**: Stale entries get refreshed in the background
+5. **Pruning Capability**: Rarely accessed and old entries can be removed
+6. **Persistent Storage**: Cache is saved to disk for use across bot restarts
+7. **Performance First**: Cache hits are served immediately with background refreshing
+
+This caching system significantly reduces API token usage for frequently asked questions while maintaining response freshness through background updates of stale entries.
 
 ## Environment Configuration
 

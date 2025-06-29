@@ -31,6 +31,9 @@ jobs:
 
       - name: Run tests with coverage
         run: npm test -- --coverage --forceExit
+        
+      - name: Set correct repository info for Codecov
+        run: node codecov-force-org.js
 
       - name: Upload coverage to QLTY
         uses: qltysh/qlty-action/coverage@v1
@@ -40,16 +43,26 @@ jobs:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
           files: coverage/lcov.info
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        continue-on-error: true
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage/lcov.info
-          flags: unittests
-          name: codecov-coverage-report
-          fail_ci_if_error: false
+      - name: Prepare Codecov environment
+        run: |
+          # Source the environment variables from our script
+          if [ -f codecov-fix.env ]; then
+            cat codecov-fix.env >> $GITHUB_ENV
+          fi
+          # Make wrapper executable
+          chmod +x codecov-wrapper.sh
+          
+      - name: Upload coverage to Codecov manually
+        run: |
+          # First get the CLI tool
+          curl -Os https://cli.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          
+          # Show available commands
+          ./codecov --help
+          
+          # Use our wrapper to run the CLI with the correct environment variables
+          ./codecov-wrapper.sh ./codecov -v do-upload -t ${{ secrets.CODECOV_TOKEN }} -f coverage/lcov.info -F unittests -R powerfulqa/aszune-ai-bot -C ${{ github.sha }} -B feature/smart-cache
 
   simple-test:
     name: Simple Test (No Coverage)

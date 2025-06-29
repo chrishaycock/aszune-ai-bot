@@ -1,0 +1,19 @@
+codecov:
+  require_ci_to_pass: yes
+  url: "https://codecov.io/gh/powerfulqa/aszune-ai-bot"
+  token: b7ab670b-dbae-43a4-8847-2ce55004e66d
+  slug: "powerfulqa/aszune-ai-bot"
+  bot: "codecov-io"
+  strict_yaml_branch: "feature/smart-cache"
+  notify:
+    require_ci_to_pass: yes
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+
+comment: false
+
+github_checks:
+  annotations: false

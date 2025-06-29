@@ -10,6 +10,7 @@ const handleChatMessage = require('./services/chat');
 const commandHandler = require('./commands');
 const conversationManager = require('./utils/conversation');
 const logger = require('./utils/logger');
+const cacheService = require('./services/cache');
 
 // Create Discord client
 const client = new Client({
@@ -50,6 +51,11 @@ async function registerSlashCommands() {
 // Handle ready event
 client.once('ready', async () => {
   logger.info(`Discord bot is online as ${client.user.tag}!`);
+  
+  // Initialize the cache service
+  cacheService.init();
+  
+  // Register slash commands
   await registerSlashCommands();
 });
 
@@ -117,4 +123,5 @@ module.exports = {
   client,
   handleChatMessage,
   conversationManager,
+  cacheService,
 };
