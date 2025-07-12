@@ -8,12 +8,22 @@ class Logger {
       INFO: 1,
       WARN: 2,
       ERROR: 3,
+      SILENT: 4, // Added SILENT level for tests
     };
     
     // Set log level based on environment
-    this.logLevel = process.env.NODE_ENV === 'production' 
-      ? this.levels.INFO 
-      : this.levels.DEBUG;
+    if (process.env.LOG_LEVEL) {
+      // Use explicit log level if provided
+      const level = this.levels[process.env.LOG_LEVEL.toUpperCase()];
+      this.logLevel = level !== undefined ? level : this.levels.INFO;
+    } else if (process.env.NODE_ENV === 'test') {
+      // Use INFO level in tests by default but allow override through LOG_LEVEL
+      this.logLevel = this.levels.INFO;
+    } else if (process.env.NODE_ENV === 'production') {
+      this.logLevel = this.levels.INFO;
+    } else {
+      this.logLevel = this.levels.DEBUG;
+    }
   }
   
   /**
@@ -34,7 +44,9 @@ class Logger {
    */
   debug(message, data) {
     if (this.logLevel <= this.levels.DEBUG) {
+      // eslint-disable-next-line no-console
       console.log(this._formatMessage('DEBUG', message));
+      // eslint-disable-next-line no-console
       if (data) console.log(data);
     }
   }
@@ -46,7 +58,9 @@ class Logger {
    */
   info(message, data) {
     if (this.logLevel <= this.levels.INFO) {
+      // eslint-disable-next-line no-console
       console.log(this._formatMessage('INFO', message));
+      // eslint-disable-next-line no-console
       if (data) console.log(data);
     }
   }
@@ -58,7 +72,9 @@ class Logger {
    */
   warn(message, data) {
     if (this.logLevel <= this.levels.WARN) {
+      // eslint-disable-next-line no-console
       console.warn(this._formatMessage('WARN', message));
+      // eslint-disable-next-line no-console
       if (data) console.warn(data);
     }
   }
@@ -70,21 +86,26 @@ class Logger {
    */
   error(message, error) {
     if (this.logLevel <= this.levels.ERROR) {
+      // eslint-disable-next-line no-console
       console.error(this._formatMessage('ERROR', message));
       
       if (error) {
         if (error.response) {
           // API error with response
+          // eslint-disable-next-line no-console
           console.error('API Error Response:', {
             status: error.response.status,
             data: error.response.data,
           });
         } else if (error.request) {
           // No response received
+          // eslint-disable-next-line no-console
           console.error('No response received from API:', error.request);
         } else {
           // General error
+          // eslint-disable-next-line no-console
           console.error('Error:', error.message || error);
+          // eslint-disable-next-line no-console
           if (error.stack) console.error('Stack:', error.stack);
         }
       }

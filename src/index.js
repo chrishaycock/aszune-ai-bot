@@ -6,10 +6,11 @@
  */
 const { Client, GatewayIntentBits, REST, Routes } = require('discord.js');
 const config = require('./config/config');
-const handleChatMessage = require('./services/chat');
+const { handleChatMessage } = require('./services/chat');
 const commandHandler = require('./commands');
 const conversationManager = require('./utils/conversation');
 const logger = require('./utils/logger');
+const cacheService = require('./services/cache');
 
 // Create Discord client
 const client = new Client({
@@ -50,6 +51,19 @@ async function registerSlashCommands() {
 // Handle ready event
 client.once('ready', async () => {
   logger.info(`Discord bot is online as ${client.user.tag}!`);
+  
+  // Initialize the cache service (use initSync for backward compatibility)
+  cacheService.initSync();
+  
+  // Set up periodic cache saving (configurable interval)
+  const CACHE_SAVE_INTERVAL = config.CACHE?.SAVE_INTERVAL_MS || 60000; // Default to 60 seconds if not set
+  logger.info(`Setting cache save interval to ${CACHE_SAVE_INTERVAL/1000} seconds`);
+  
+  setInterval(() => {
+    cacheService.saveIfDirty();
+  }, CACHE_SAVE_INTERVAL);
+  
+  // Register slash commands
   await registerSlashCommands();
 });
 
@@ -76,6 +90,8 @@ client.on('warn', (info) => {
 process.on('SIGINT', async () => {
   logger.info('Shutting down...');
   try {
+    // Save cache if needed before shutting down
+    cacheService.saveIfDirty();
     await client.destroy();
     await conversationManager.destroy();
   } catch (error) {
@@ -88,6 +104,8 @@ process.on('SIGINT', async () => {
 process.on('SIGTERM', async () => {
   logger.info('Shutting down...');
   try {
+    // Save cache if needed before shutting down
+    cacheService.saveIfDirty();
     await client.destroy();
     await conversationManager.destroy();
   } catch (error) {
@@ -117,4 +135,5 @@ module.exports = {
   client,
   handleChatMessage,
   conversationManager,
+  cacheService,
 };
