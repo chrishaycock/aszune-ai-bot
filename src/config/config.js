@@ -12,6 +12,10 @@ if (missingEnvVars.length > 0) {
   process.exit(1);
 }
 
+// Environment-specific defaults
+const isProduction = process.env.NODE_ENV === 'production';
+const isTest = process.env.NODE_ENV === 'test';
+
 module.exports = {
   // API Keys and Tokens
   PERPLEXITY_API_KEY: process.env.PERPLEXITY_API_KEY,
@@ -20,6 +24,32 @@ module.exports = {
   // Bot Configuration
   MAX_HISTORY: 20,
   RATE_LIMIT_WINDOW: 5000, // 5 seconds
+  
+  // Cache Configuration
+  CACHE: {
+    // Enable or disable smart cache
+    ENABLED: process.env.ASZUNE_ENABLE_SMART_CACHE !== 'false', // Enabled by default unless explicitly set to 'false'
+    // Cache save interval in milliseconds (configurable via env vars)
+    SAVE_INTERVAL_MS: parseInt(process.env.ASZUNE_CACHE_SAVE_INTERVAL_MS, 10) || 
+                      (isProduction ? 300000 : 60000), // 5 min in prod, 1 min in dev
+    // Cache refresh threshold (default 30 days)
+    REFRESH_THRESHOLD_MS: parseInt(process.env.ASZUNE_CACHE_REFRESH_THRESHOLD_MS, 10) || 
+                         (30 * 24 * 60 * 60 * 1000),
+    // Similarity threshold for cache hits
+    SIMILARITY_THRESHOLD: parseFloat(process.env.ASZUNE_CACHE_SIMILARITY_THRESHOLD) || 0.85,
+    // Maximum cache size
+    MAX_SIZE: parseInt(process.env.ASZUNE_MAX_CACHE_SIZE, 10) || 
+             (isProduction ? 10000 : (isTest ? 100 : 1000)), // Different defaults per environment
+    // LRU thresholds
+    LRU_PRUNE_THRESHOLD: parseInt(process.env.ASZUNE_LRU_PRUNE_THRESHOLD, 10) || 
+                        (isProduction ? 9000 : (isTest ? 90 : 900)),
+    LRU_PRUNE_TARGET: parseInt(process.env.ASZUNE_LRU_PRUNE_TARGET, 10) || 
+                     (isProduction ? 7500 : (isTest ? 75 : 750)),
+    // Maximum question length for caching
+    MAX_QUESTION_LENGTH: parseInt(process.env.ASZUNE_MAX_QUESTION_LENGTH, 10) || 10000,
+    // Memory cache size (number of entries)
+    MEMORY_CACHE_SIZE: parseInt(process.env.ASZUNE_MEMORY_CACHE_SIZE, 10) || 500
+  },
   
   // API Configuration
   API: {

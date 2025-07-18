@@ -5,3 +5,4 @@ coverage/
 data/
 logs/
 .DS_Store
+test-results/
