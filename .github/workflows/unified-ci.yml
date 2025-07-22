@@ -29,9 +29,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests with coverage
-        run: npm test -- --coverage --forceExit
+      - name: Security audit
+        run: npm run security
+        continue-on-error: true
 
+      - name: Run tests with coverage
+        run: npm run test:ci
+        env:
+          JEST_JUNIT_OUTPUT_DIR: ./test-results/
+          JEST_JUNIT_OUTPUT_NAME: junit.xml
+        
       - name: Upload coverage to QLTY
         uses: qltysh/qlty-action/coverage@v1
         continue-on-error: true
@@ -41,37 +48,17 @@ jobs:
           files: coverage/lcov.info
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        continue-on-error: true
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage/lcov.info
-          flags: unittests
-          name: codecov-coverage-report
+          file: coverage/lcov.info
           fail_ci_if_error: false
-
-  simple-test:
-    name: Simple Test (No Coverage)
-    runs-on: ubuntu-latest
-    # Only run this job for feature branches that are not PRs
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/feature/')
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+          
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
         with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests without coverage
-        run: npm test -- --forceExit
+          token: ${{ secrets.CODECOV_TOKEN }}
 
 # When ready to deploy the bot, you can uncomment and customize this job
 #  deploy:

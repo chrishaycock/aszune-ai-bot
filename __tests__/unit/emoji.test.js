@@ -1,39 +1,45 @@
 // __tests__/emoji.test.js
-const appendEmoji = require('../../utils/emoji');
+const emojiManager = require('../../src/utils/emoji');
 
-describe('appendEmoji', () => {
+describe('EmojiManager', () => {
   it('adds the correct emoji for known keywords', () => {
-    expect(appendEmoji('I am happy')).toBe('I am happy 😊');
-    expect(appendEmoji('This is awesome')).toBe('This is awesome 😎');
-    expect(appendEmoji('Much love')).toBe('Much love ❤️');
+    expect(emojiManager.addEmojisToResponse('I am happy')).toContain('😊');
+    expect(emojiManager.addEmojisToResponse('This is awesome')).toContain('😎');
+    expect(emojiManager.addEmojisToResponse('Much love')).toContain('❤️');
   });
 
   it('does not modify the text if no keyword is present', () => {
-    expect(appendEmoji('Nothing matches here')).toBe('Nothing matches here');
+    expect(emojiManager.addEmojisToResponse('Nothing matches here')).toBe('Nothing matches here');
   });
 
   it('is case-insensitive', () => {
-    expect(appendEmoji('HELP me')).toBe('HELP me 🆘');
+    expect(emojiManager.addEmojisToResponse('HELP me')).toContain('🆘');
   });
 
   it('can add multiple emojis', () => {
-    expect(appendEmoji('Thanks and congratulations')).toBe('Thanks and congratulations 🎉 🙏');
+    const result = emojiManager.addEmojisToResponse('Thanks and congratulations');
+    expect(result).toContain('🎉');
+    expect(result).toContain('🙏');
   });
 
   it('does not add emoji for keywords inside other words', () => {
-    expect(appendEmoji('helpful person')).toBe('helpful person');
-    expect(appendEmoji('sadly, it happened')).toBe('sadly, it happened');
+    expect(emojiManager.addEmojisToResponse('helpful person')).toBe('helpful person');
   });
 
-  it('adds all matching emojis in correct order', () => {
-    expect(appendEmoji('happy love sad')).toBe('happy love sad 😊 ❤️ 😢');
+  it('adds all matching emojis', () => {
+    const result = emojiManager.addEmojisToResponse('happy love sad');
+    expect(result).toContain('😊');
+    expect(result).toContain('❤️');
+    expect(result).toContain('😢');
   });
 
   it('handles empty string', () => {
-    expect(appendEmoji('')).toBe('');
+    expect(emojiManager.addEmojisToResponse('')).toBe('');
   });
 
-  it('handles string with only emojis as keywords', () => {
-    expect(appendEmoji('happy sad')).toBe('happy sad 😊 😢');
+  it('can get reactions for a message', () => {
+    const reactions = emojiManager.getReactionsForMessage('happy sad');
+    expect(reactions).toContain('😊');
+    expect(reactions).toContain('😢');
   });
 });

@@ -110,6 +110,102 @@ This guide covers common issues you might encounter while setting up and running
 - Check the conversation history size and consider reducing the maximum history length
 - Look for memory leaks in the code, especially with event listeners or timers
 
+## Cache Issues
+
+### Smart Cache Not Working
+
+**Symptoms:**
+
+- Bot always queries the API even for repeated questions
+- Error messages about cache in the logs
+
+**Possible Causes and Solutions:**
+
+1. **Missing `lru-cache` Package**
+   - Run `npm install lru-cache` to install the required package
+   - Restart the bot after installation
+
+2. **Incorrect Cache Configuration**
+   - Ensure environment variables are set properly in your `.env` file
+   - Check that the values are within reasonable ranges (not set to 0)
+
+3. **Permission Issues with Cache File**
+   - Ensure the bot has write permissions to the `data` directory
+   - Check ownership and permissions of the cache file:
+     ```bash
+     ls -la data/question_cache.json
+     ```
+   - Fix permissions if needed:
+     ```bash
+     chmod 664 data/question_cache.json
+     ```
+
+4. **Disk Space Issues**
+   - Verify there's enough disk space for the cache file to grow
+   - Run `df -h` to check available space
+
+### Performance Issues on Raspberry Pi
+
+**Symptoms:**
+
+- Bot responds slowly
+- High CPU usage
+- Device running hot
+
+**Possible Causes and Solutions:**
+
+1. **Cache Too Large for Available Memory**
+   - Reduce the cache settings further in your `.env` file:
+     ```
+     ASZUNE_MEMORY_CACHE_SIZE=50
+     ASZUNE_MAX_CACHE_SIZE=1000
+     ```
+
+2. **Thermal Throttling**
+   - Add a cooling solution (heatsink, fan)
+   - Ensure good ventilation around the device
+   - Monitor temperature with `vcgencmd measure_temp`
+
+3. **SD Card I/O Bottlenecks**
+   - Move the application to an external USB SSD for better performance
+   - Increase the cache save interval to reduce writes:
+     ```
+     ASZUNE_CACHE_SAVE_INTERVAL_MS=1200000  # 20 minutes
+     ```
+
+4. **Memory Leaks**
+   - Schedule periodic restarts with cron or PM2
+   - Set up PM2 with memory monitoring:
+     ```bash
+     pm2 start src/index.js --name aszune-ai --max-memory-restart 300M
+     ```
+
+### Resource Constraints on Raspberry Pi
+
+**Symptoms:**
+
+- High memory usage
+- System running slow
+- Bot becoming unresponsive
+- Pi-hole or other services affected
+
+**Solution:**
+
+1. **Disable the Smart Cache Feature**
+   - Edit your `.env` file and set:
+     ```
+     ASZUNE_ENABLE_SMART_CACHE=false
+     ```
+   - Restart the bot
+   - This will completely disable the caching system while keeping all other bot functionality
+
+2. **Monitor Resource Usage**
+   - Run `htop` to see real-time memory usage
+   - If the bot is still using too many resources even with cache disabled, consider:
+     - Running on a separate Raspberry Pi
+     - Using PM2's memory limit: `pm2 start src/index.js --name aszune-ai --max-memory-restart 300M`
+     - Setting up a cron job to restart the bot daily
+
 ## Common Error Messages
 
 ### "Cannot find module 'xyz'"
@@ -155,8 +251,6 @@ For more detailed troubleshooting:
 
    Add to your `.env` file: ```env
    DEBUG=true
-
-   ```
 
    ```
 

@@ -65,7 +65,7 @@ jest.mock('../../src/utils/logger');
 
 describe('Bot Main Entry Point (index.js)', () => {
   let Client, GatewayIntentBits, REST;
-  let handleChatMessage;
+  let chatService;
   let commandHandler;
   let conversationManager;
   let logger;
@@ -93,7 +93,7 @@ describe('Bot Main Entry Point (index.js)', () => {
     mockClientInstance.removeAllListeners();
     
     ({ Client, GatewayIntentBits, REST } = require('discord.js'));
-    handleChatMessage = require('../../src/services/chat');
+    chatService = require('../../src/services/chat');
     commandHandler = require('../../src/commands');
     conversationManager = require('../../src/utils/conversation');
     logger = require('../../src/utils/logger');
@@ -129,7 +129,7 @@ describe('Bot Main Entry Point (index.js)', () => {
     it('should handle the "messageCreate" event', () => {
       const message = { content: 'hello' };
       mockClientInstance.emit('messageCreate', message);
-      expect(handleChatMessage).toHaveBeenCalledWith(message);
+      expect(chatService.handleChatMessage).toHaveBeenCalledWith(message);
     });
 
     it('should handle the "interactionCreate" event for a slash command', async () => {

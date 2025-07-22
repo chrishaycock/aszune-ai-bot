@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="247" failures="15" errors="0" time="6.651">
+  <testsuite name="__tests__\unit\fallback-service.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="1.254" tests="1">
+    <testcase classname="Fallback Service" name="Fallback Service should return a generic fallback response" time="0.107">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\logger.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="1.335" tests="32">
+    <testcase classname="Logger Constructor log level initialization" name="Logger Constructor log level initialization uses explicit LOG_LEVEL when provided" time="0.024">
+    </testcase>
+    <testcase classname="Logger Constructor log level initialization" name="Logger Constructor log level initialization uses INFO level for test environment by default" time="0.002">
+    </testcase>
+    <testcase classname="Logger Constructor log level initialization" name="Logger Constructor log level initialization uses INFO level for production environment by default" time="0.006">
+    </testcase>
+    <testcase classname="Logger Constructor log level initialization" name="Logger Constructor log level initialization uses DEBUG level for development (default) environment" time="0.004">
+    </testcase>
+    <testcase classname="Logger Constructor log level initialization" name="Logger Constructor log level initialization handles invalid LOG_LEVEL by defaulting to INFO" time="0.002">
+    </testcase>
+    <testcase classname="Logger" name="Logger logs debug messages" time="0.001">
+    </testcase>
+    <testcase classname="Logger" name="Logger logs debug messages with data" time="0.002">
+    </testcase>
+    <testcase classname="Logger" name="Logger logs info messages" time="0.001">
+    </testcase>
+    <testcase classname="Logger" name="Logger logs warning messages" time="0.001">
+    </testcase>
+    <testcase classname="Logger" name="Logger logs error messages" time="0.002">
+    </testcase>
+    <testcase classname="Logger" name="Logger logs error messages with error object" time="0.042">
+    </testcase>
+    <testcase classname="Logger" name="Logger handles API errors" time="0.002">
+    </testcase>
+    <testcase classname="Logger" name="Logger handles request errors with no response" time="0.002">
+    </testcase>
+    <testcase classname="Logger" name="Logger handles general errors with stack trace" time="0.001">
+    </testcase>
+    <testcase classname="Logger" name="Logger handles general errors without stack trace" time="0.001">
+    </testcase>
+    <testcase classname="Logger" name="Logger provides user-friendly error messages" time="0.002">
+    </testcase>
+    <testcase classname="Logger" name="Logger customizes error messages based on error type" time="0.005">
+    </testcase>
+    <testcase classname="Logger Log level filtering" name="Logger Log level filtering does not log debug messages when log level is WARN" time="0.002">
+    </testcase>
+    <testcase classname="Logger Log level filtering" name="Logger Log level filtering does not log info messages when log level is WARN" time="0.002">
+    </testcase>
+    <testcase classname="Logger Log level filtering" name="Logger Log level filtering logs warn messages when log level is WARN" time="0.001">
+    </testcase>
+    <testcase classname="Logger Log level filtering" name="Logger Log level filtering logs error messages when log level is WARN" time="0.002">
+    </testcase>
+    <testcase classname="Logger SILENT log level" name="Logger SILENT log level does not log any messages when log level is SILENT" time="0.002">
+    </testcase>
+    <testcase classname="Logger" name="Logger handles errors with default context" time="0.002">
+    </testcase>
+    <testcase classname="Logger Additional error logging branches" name="Logger Additional error logging branches handles API errors with missing data property" time="0.002">
+    </testcase>
+    <testcase classname="Logger Additional error logging branches" name="Logger Additional error logging branches handles null error objects" time="0.001">
+    </testcase>
+    <testcase classname="Logger Additional error logging branches" name="Logger Additional error logging branches handles undefined error objects" time="0.002">
+    </testcase>
+    <testcase classname="Logger Additional error logging branches" name="Logger Additional error logging branches handles error objects without message property" time="0.001">
+    </testcase>
+    <testcase classname="Logger" name="Logger handles timeout error messages correctly" time="0.003">
+    </testcase>
+    <testcase classname="Logger" name="Logger handles network errors correctly" time="0.003">
+    </testcase>
+    <testcase classname="Logger" name="Logger formats errors with status codes correctly" time="0.003">
+    </testcase>
+    <testcase classname="Logger" name="Logger formats log messages with timestamp and level" time="0.001">
+    </testcase>
+    <testcase classname="Logger" name="Logger handles API errors with response but no status" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\integration\error.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="1.531" tests="2">
+    <testcase classname="Error handling" name="Error handling handles failed Perplexity API response" time="0.278">
+    </testcase>
+    <testcase classname="Error handling" name="Error handling handles failed summary API response" time="0.033">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\storage.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:16" time="0.223" tests="9">
+    <testcase classname="DataStorage init" name="DataStorage init should create data directory if it does not exist" time="0.002">
+    </testcase>
+    <testcase classname="DataStorage init" name="DataStorage init should not create directory if already initialized" time="0.001">
+    </testcase>
+    <testcase classname="DataStorage init" name="DataStorage init should throw and log error if mkdir fails" time="0.016">
+    </testcase>
+    <testcase classname="DataStorage saveUserStats" name="DataStorage saveUserStats should save user stats to file" time="0.001">
+    </testcase>
+    <testcase classname="DataStorage saveUserStats" name="DataStorage saveUserStats should log error if writeFile fails" time="0">
+    </testcase>
+    <testcase classname="DataStorage loadUserStats" name="DataStorage loadUserStats should load user stats from file" time="0.001">
+    </testcase>
+    <testcase classname="DataStorage loadUserStats" name="DataStorage loadUserStats should return empty object if file does not exist" time="0.001">
+    </testcase>
+    <testcase classname="DataStorage loadUserStats" name="DataStorage loadUserStats should return empty object and log error if readFile fails for other reasons" time="0.001">
+    </testcase>
+    <testcase classname="DataStorage loadUserStats" name="DataStorage loadUserStats should return empty object and log error if JSON parsing fails" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\perplexity-service.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="1.655" tests="4">
+    <testcase classname="Perplexity Service sendChatRequest" name="Perplexity Service sendChatRequest sends a request to the API with correct parameters" time="0.017">
+    </testcase>
+    <testcase classname="Perplexity Service sendChatRequest" name="Perplexity Service sendChatRequest throws an error when API request fails" time="0.129">
+    </testcase>
+    <testcase classname="Perplexity Service generateSummary" name="Perplexity Service generateSummary generates a summary with correct system prompt" time="0.002">
+    </testcase>
+    <testcase classname="Perplexity Service generateChatResponse" name="Perplexity Service generateChatResponse generates a chat response with correct system prompt" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\cache-edge-cases.test.js" errors="0" failures="1" skipped="0" timestamp="2025-07-22T14:32:15" time="1.622" tests="16">
+    <testcase classname="Cache Service Edge Cases Memory Cache" name="Cache Service Edge Cases Memory Cache uses memory cache for subsequent lookups" time="0.131">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases saveIfDirtyAsync" name="Cache Service Edge Cases saveIfDirtyAsync saves the cache if it is dirty" time="0.003">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases saveIfDirtyAsync" name="Cache Service Edge Cases saveIfDirtyAsync does not save the cache if it is not dirty" time="0.002">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases saveIfDirtyAsync" name="Cache Service Edge Cases saveIfDirtyAsync handles errors during save operation" time="0.016">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases Error handling during initialization" name="Cache Service Edge Cases Error handling during initialization should handle directory creation errors in non-test environment" time="0.085">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases Error handling during initialization" name="Cache Service Edge Cases Error handling during initialization should handle JSON parse errors during initialization" time="0.002">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases Cache operations with disabled cache" name="Cache Service Edge Cases Cache operations with disabled cache should make all operations no-ops when cache is disabled" time="0.015">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: false
+Received: undefined
+    at Object.toBe (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\cache-edge-cases.test.js:192:25)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</failure>
+    </testcase>
+    <testcase classname="Cache Service Edge Cases Cache pruning and management" name="Cache Service Edge Cases Cache pruning and management should prune cache when size exceeds threshold" time="0.003">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases Cache pruning and management" name="Cache Service Edge Cases Cache pruning and management should clear the cache properly" time="0.006">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases Cache pruning and management" name="Cache Service Edge Cases Cache pruning and management does not save the cache if it is not dirty" time="0.006">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases saveIfDirty" name="Cache Service Edge Cases saveIfDirty saves the cache if it is dirty" time="0.004">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases saveIfDirty" name="Cache Service Edge Cases saveIfDirty does not save the cache if it is not dirty" time="0.024">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases getHitRateStats" name="Cache Service Edge Cases getHitRateStats returns correct hit rate statistics" time="0.003">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases resetMetrics" name="Cache Service Edge Cases resetMetrics resets all metrics to zero" time="0.004">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases maintain" name="Cache Service Edge Cases maintain calls saveIfDirty when maintenance runs" time="0.002">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases maintain" name="Cache Service Edge Cases maintain evicts LRU entries when cache exceeds threshold" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\testUtils-helper.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:16" time="0.228" tests="3">
+    <testcase classname="Test Utils Helper createMockObject" name="Test Utils Helper createMockObject creates mock functions for all methods in an object" time="0.001">
+    </testcase>
+    <testcase classname="Test Utils Helper delay" name="Test Utils Helper delay returns a promise that resolves after specified time" time="0.068">
+    </testcase>
+    <testcase classname="Test Utils Helper deepClone" name="Test Utils Helper deepClone creates a deep clone of an object" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\cache-service.test.js" errors="0" failures="6" skipped="0" timestamp="2025-07-22T14:32:15" time="1.777" tests="23">
+    <testcase classname="Cache Service initSync()" name="Cache Service initSync() initializes the cache from disk" time="0.137">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: &quot;/mock/path/question_cache.json&quot;
+
+Number of calls: 0
+    at Object.toHaveBeenCalledWith (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\cache-service.test.js:73:29)
+    at Promise.then.completed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Cache Service initSync()" name="Cache Service initSync() creates a new cache if file does not exist" time="0.003">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalled()
+
+Expected number of calls: &gt;= 1
+Received number of calls:    0
+    at Object.toHaveBeenCalled (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\cache-service.test.js:89:32)
+    at Promise.then.completed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Cache Service initSync()" name="Cache Service initSync() handles read errors gracefully" time="0.046">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalled()
+
+Expected number of calls: &gt;= 1
+Received number of calls:    0
+    at Object.toHaveBeenCalled (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\cache-service.test.js:104:32)
+    at Promise.then.completed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Cache Service generateHash()" name="Cache Service generateHash() creates consistent hashes for the same question" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service generateHash()" name="Cache Service generateHash() creates different hashes for different questions" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service calculateSimilarity()" name="Cache Service calculateSimilarity() returns 1 for identical strings" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service calculateSimilarity()" name="Cache Service calculateSimilarity() returns 0 for completely different strings" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service calculateSimilarity()" name="Cache Service calculateSimilarity() returns a value between 0 and 1 for partially similar strings" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service findInCache()" name="Cache Service findInCache() finds an exact match by hash" time="0.004">
+    </testcase>
+    <testcase classname="Cache Service findInCache()" name="Cache Service findInCache() finds a similar match" time="0.009">
+    </testcase>
+    <testcase classname="Cache Service findInCache()" name="Cache Service findInCache() returns null when no match is found" time="0.005">
+    </testcase>
+    <testcase classname="Cache Service findInCache()" name="Cache Service findInCache() marks stale entries for refresh" time="0.011">
+    </testcase>
+    <testcase classname="Cache Service addToCache()" name="Cache Service addToCache() adds a new entry to the cache" time="0.004">
+    </testcase>
+    <testcase classname="Cache Service addToCache()" name="Cache Service addToCache() includes game context when provided" time="0.005">
+    </testcase>
+    <testcase classname="Cache Service getStats()" name="Cache Service getStats() returns accurate statistics" time="0.008">
+    </testcase>
+    <testcase classname="Cache Service pruneCache()" name="Cache Service pruneCache() removes old, rarely accessed entries" time="0.016">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases" name="Cache Service Edge Cases handles very long questions" time="0.003">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases" name="Cache Service Edge Cases handles Unicode characters in questions and answers" time="0.036">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases" name="Cache Service Edge Cases handles special characters and punctuation appropriately" time="0.005">
+    </testcase>
+    <testcase classname="Cache Service Edge Cases" name="Cache Service Edge Cases rejects empty or invalid inputs" time="0.012">
+      <failure>CacheValueError: Invalid question or answer
+    at CacheService.addToCache (C:\Users\chris\aszune-ai\aszune-ai-bot\src\services\cache_lean.js:604:13)
+    at Object.addToCache (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\cache-service.test.js:416:37)
+    at Promise.then.completed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Cache Service Edge Cases" name="Cache Service Edge Cases handles file system errors gracefully" time="0.04">
+      <failure>CacheSaveError: Failed to save cache: Disk full
+    at CacheService.saveCache_sync (C:\Users\chris\aszune-ai\aszune-ai-bot\src\services\cache_lean.js:750:15)
+    at CacheService.saveCache_sync [as addToCache] (C:\Users\chris\aszune-ai\aszune-ai-bot\src\services\cache_lean.js:651:14)
+    at Object.addToCache (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\cache-service.test.js:437:20)
+    at Promise.then.completed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Cache Service Edge Cases" name="Cache Service Edge Cases should handle read errors gracefully when restoring from backup" time="0.04">
+      <failure>CacheSaveError: Failed to save cache: Disk full
+    at CacheService.saveCache_sync (C:\Users\chris\aszune-ai\aszune-ai-bot\src\services\cache_lean.js:750:15)
+    at CacheService.saveCache_sync [as addToCache] (C:\Users\chris\aszune-ai\aszune-ai-bot\src\services\cache_lean.js:651:14)
+    at Object.addToCache (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\cache-service.test.js:465:20)
+    at Promise.then.completed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Cache Service Edge Cases" name="Cache Service Edge Cases should implement LRU cache eviction correctly" time="0.019">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\index.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="1.759" tests="12">
+    <testcase classname="Bot Main Entry Point (index.js)" name="Bot Main Entry Point (index.js) should create a Discord client with the correct intents" time="0.372">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js)" name="Bot Main Entry Point (index.js) should log in the client" time="0.007">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Event Handlers" name="Bot Main Entry Point (index.js) Event Handlers should handle the &quot;ready&quot; event and register slash commands" time="0.009">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Event Handlers" name="Bot Main Entry Point (index.js) Event Handlers should handle the &quot;messageCreate&quot; event" time="0.01">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Event Handlers" name="Bot Main Entry Point (index.js) Event Handlers should handle the &quot;interactionCreate&quot; event for a slash command" time="0.007">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Event Handlers" name="Bot Main Entry Point (index.js) Event Handlers should ignore non-slash command interactions" time="0.006">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Event Handlers" name="Bot Main Entry Point (index.js) Event Handlers should handle the &quot;error&quot; event" time="0.008">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Event Handlers" name="Bot Main Entry Point (index.js) Event Handlers should handle the &quot;warn&quot; event" time="0.017">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Process Signal Handlers" name="Bot Main Entry Point (index.js) Process Signal Handlers should handle SIGINT" time="0.022">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Process Signal Handlers" name="Bot Main Entry Point (index.js) Process Signal Handlers should handle SIGTERM" time="0.014">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Process Signal Handlers" name="Bot Main Entry Point (index.js) Process Signal Handlers should handle errors during shutdown for SIGINT" time="0.007">
+    </testcase>
+    <testcase classname="Bot Main Entry Point (index.js) Process Signal Handlers" name="Bot Main Entry Point (index.js) Process Signal Handlers should handle unhandledRejection" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\conversation-manager.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:16" time="0.209" tests="13">
+    <testcase classname="Conversation Manager getHistory" name="Conversation Manager getHistory returns empty array for new users" time="0.001">
+    </testcase>
+    <testcase classname="Conversation Manager getHistory" name="Conversation Manager getHistory returns conversation history for existing users" time="0">
+    </testcase>
+    <testcase classname="Conversation Manager addMessage" name="Conversation Manager addMessage adds a message to conversation history" time="0.001">
+    </testcase>
+    <testcase classname="Conversation Manager addMessage" name="Conversation Manager addMessage updates user stats when adding a user message" time="0.001">
+    </testcase>
+    <testcase classname="Conversation Manager addMessage" name="Conversation Manager addMessage trims conversation history when it exceeds the maximum length" time="0.001">
+    </testcase>
+    <testcase classname="Conversation Manager clearHistory" name="Conversation Manager clearHistory clears conversation history for a user" time="0.001">
+    </testcase>
+    <testcase classname="Conversation Manager isRateLimited" name="Conversation Manager isRateLimited returns false for users with no recent messages" time="0">
+    </testcase>
+    <testcase classname="Conversation Manager isRateLimited" name="Conversation Manager isRateLimited returns true for users with recent messages" time="0.001">
+    </testcase>
+    <testcase classname="Conversation Manager isRateLimited" name="Conversation Manager isRateLimited returns false after the rate limit window passes" time="0.001">
+    </testcase>
+    <testcase classname="Conversation Manager getUserStats" name="Conversation Manager getUserStats returns default stats for new users" time="0">
+    </testcase>
+    <testcase classname="Conversation Manager getUserStats" name="Conversation Manager getUserStats returns user stats for existing users" time="0.004">
+    </testcase>
+    <testcase classname="Conversation Manager updateUserStats" name="Conversation Manager updateUserStats increments message count" time="0.001">
+    </testcase>
+    <testcase classname="Conversation Manager updateUserStats" name="Conversation Manager updateUserStats increments summary count" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\utils\testUtils.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:16" time="0.175" tests="8">
+    <testcase classname="Test Utilities createMockMessage" name="Test Utilities createMockMessage should create a default mock message" time="0.001">
+    </testcase>
+    <testcase classname="Test Utilities createMockMessage" name="Test Utilities createMockMessage should create a mock message with custom content" time="0">
+    </testcase>
+    <testcase classname="Test Utilities createMockMessage" name="Test Utilities createMockMessage should create a mock message from a bot" time="0">
+    </testcase>
+    <testcase classname="Test Utilities createMockMessage" name="Test Utilities createMockMessage should create a mock message with a custom user ID" time="0">
+    </testcase>
+    <testcase classname="Test Utilities createMockInteraction" name="Test Utilities createMockInteraction should create a default mock interaction" time="0.001">
+    </testcase>
+    <testcase classname="Test Utilities createMockInteraction" name="Test Utilities createMockInteraction should create a mock interaction with a custom user ID" time="0.001">
+    </testcase>
+    <testcase classname="Test Utilities createMockInteraction" name="Test Utilities createMockInteraction should create a mock interaction with a custom command name" time="0">
+    </testcase>
+    <testcase classname="Test Utilities resetMocks" name="Test Utilities resetMocks should reset all mocks" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\errors.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:17" time="0.168" tests="11">
+    <testcase classname="Error Classes AszaiBotError" name="Error Classes AszaiBotError creates a base error with proper name" time="0.001">
+    </testcase>
+    <testcase classname="Error Classes CacheError" name="Error Classes CacheError creates a cache error with details" time="0.001">
+    </testcase>
+    <testcase classname="Error Classes CacheError" name="Error Classes CacheError handles missing details" time="0.001">
+    </testcase>
+    <testcase classname="Error Classes Specific Cache Errors" name="Error Classes Specific Cache Errors creates a CacheInitializationError" time="0.001">
+    </testcase>
+    <testcase classname="Error Classes Specific Cache Errors" name="Error Classes Specific Cache Errors creates a CacheSaveError" time="0.001">
+    </testcase>
+    <testcase classname="Error Classes Specific Cache Errors" name="Error Classes Specific Cache Errors creates a CacheReadError" time="0.001">
+    </testcase>
+    <testcase classname="Error Classes Specific Cache Errors" name="Error Classes Specific Cache Errors creates a CacheValueError" time="0">
+    </testcase>
+    <testcase classname="Error Classes ApiError" name="Error Classes ApiError creates an API error with status code and response" time="0.002">
+    </testcase>
+    <testcase classname="Error Classes ApiError" name="Error Classes ApiError handles missing response" time="0">
+    </testcase>
+    <testcase classname="Error Classes RateLimitError" name="Error Classes RateLimitError creates a rate limit error with retry-after value" time="0.001">
+    </testcase>
+    <testcase classname="Error Classes RateLimitError" name="Error Classes RateLimitError handles missing retry-after value" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\cache-service-coverage.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:16" time="0.377" tests="8">
+    <testcase classname="Cache Service Additional Tests LRU Cache Operations" name="Cache Service Additional Tests LRU Cache Operations should prune entries when cache exceeds max size" time="0.003">
+    </testcase>
+    <testcase classname="Cache Service Additional Tests LRU Cache Operations" name="Cache Service Additional Tests LRU Cache Operations should return the keys in the cache" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service Additional Tests LRU Cache Operations" name="Cache Service Additional Tests LRU Cache Operations should delete keys from the cache" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service Additional Tests Hash Generation and Normalization" name="Cache Service Additional Tests Hash Generation and Normalization should handle various special characters in hash generation" time="0.002">
+    </testcase>
+    <testcase classname="Cache Service Additional Tests Hash Generation and Normalization" name="Cache Service Additional Tests Hash Generation and Normalization should handle strings with only special characters" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service Additional Tests Cache Search Functions" name="Cache Service Additional Tests Cache Search Functions should find similar entries based on similarity threshold" time="0.006">
+    </testcase>
+    <testcase classname="Cache Service Additional Tests Cache Search Functions" name="Cache Service Additional Tests Cache Search Functions should return null if no similar entries are found" time="0.001">
+    </testcase>
+    <testcase classname="Cache Service Additional Tests Cache Maintenance" name="Cache Service Additional Tests Cache Maintenance should perform LRU pruning when cache exceeds threshold" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\emoji-manager.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:17" time="0.209" tests="7">
+    <testcase classname="EmojiManager" name="EmojiManager adds emojis to response based on keywords" time="0.003">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager adds multiple emojis when multiple keywords are found" time="0.001">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager does not add emojis when no keywords are found" time="0">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager gets reactions for a message based on keywords" time="0.004">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager returns empty array when no reaction keywords are found" time="0.001">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager adds reactions to a message" time="0.001">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager handles errors when adding reactions" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\config.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:17" time="0.186" tests="1">
+    <testcase classname="Config" name="Config exports required configuration settings" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\integration\messageFlow.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:17" time="0.223" tests="1">
+    <testcase classname="Message flow" name="Message flow adds user and assistant messages to conversationHistory" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\testUtils.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:17" time="0.158" tests="5">
+    <testcase classname="Test Utilities createMockMessage" name="Test Utilities createMockMessage creates a default mock message with expected properties" time="0.001">
+    </testcase>
+    <testcase classname="Test Utilities createMockMessage" name="Test Utilities createMockMessage allows custom options" time="0.001">
+    </testcase>
+    <testcase classname="Test Utilities createMockInteraction" name="Test Utilities createMockInteraction creates a default mock interaction with expected properties" time="0.001">
+    </testcase>
+    <testcase classname="Test Utilities createMockInteraction" name="Test Utilities createMockInteraction allows custom options" time="0">
+    </testcase>
+    <testcase classname="Test Utilities resetMocks" name="Test Utilities resetMocks resets all mocks" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\emoji.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:17" time="0.166" tests="8">
+    <testcase classname="EmojiManager" name="EmojiManager adds the correct emoji for known keywords" time="0.003">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager does not modify the text if no keyword is present" time="0">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager is case-insensitive" time="0">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager can add multiple emojis" time="0.001">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager does not add emoji for keywords inside other words" time="0">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager adds all matching emojis" time="0.001">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager handles empty string" time="0.001">
+    </testcase>
+    <testcase classname="EmojiManager" name="EmojiManager can get reactions for a message" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\property-based.test.js" errors="0" failures="2" skipped="0" timestamp="2025-07-22T14:32:15" time="2.282" tests="9">
+    <testcase classname="Property-based tests Hash generation properties" name="Property-based tests Hash generation properties should handle common variations consistently" time="0.021">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: &quot;098f6bcd4621d373cade4e832627b4f6&quot;
+Received: &quot;a18e43817aba7d53baf5fbbc733a52e7&quot;
+    at toBe (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\property-based.test.js:37:23)
+    at Array.forEach (&lt;anonymous&gt;)
+    at Object.forEach (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\property-based.test.js:34:17)
+    at Promise.then.completed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Property-based tests Hash generation properties" name="Property-based tests Hash generation properties should normalize similar inputs to the same hash" time="0.014">
+      <failure>Error: Property failed after 1 tests
+{ seed: -1379650669, path: &quot;0:1:0:5:2:2&quot;, endOnFailure: true }
+Counterexample: [&quot;0 &quot;]
+Shrunk 5 time(s)
+Got error: Property failed by returning false
+
+Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+    at buildError (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\fast-check\lib\check\runner\utils\RunDetailsFormatter.js:132:15)
+    at throwIfFailed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\fast-check\lib\check\runner\utils\RunDetailsFormatter.js:144:11)
+    at reportRunDetails (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\fast-check\lib\check\runner\utils\RunDetailsFormatter.js:157:16)
+    at Object.assert (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\fast-check\lib\check\runner\Runner.js:73:52)
+    at Object.assert (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\property-based.test.js:43:10)
+    at Promise.then.completed (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (C:\Users\chris\aszune-ai\aszune-ai-bot\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="Property-based tests Hash generation properties" name="Property-based tests Hash generation properties should generate different hashes for different questions" time="0.014">
+    </testcase>
+    <testcase classname="Property-based tests Hash generation properties" name="Property-based tests Hash generation properties should handle special characters appropriately" time="0.022">
+    </testcase>
+    <testcase classname="Property-based tests Similarity calculation properties" name="Property-based tests Similarity calculation properties should always return a value between 0 and 1" time="0.006">
+    </testcase>
+    <testcase classname="Property-based tests Similarity calculation properties" name="Property-based tests Similarity calculation properties should be symmetric (sim(a,b) === sim(b,a))" time="0.006">
+    </testcase>
+    <testcase classname="Property-based tests Similarity calculation properties" name="Property-based tests Similarity calculation properties should return 1 for identical strings" time="0.004">
+    </testcase>
+    <testcase classname="Property-based tests Similarity calculation properties" name="Property-based tests Similarity calculation properties should handle special cases appropriately" time="0">
+    </testcase>
+    <testcase classname="Property-based tests Similarity calculation properties" name="Property-based tests Similarity calculation properties should produce higher similarity for more similar strings" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\integration\command.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="2.656" tests="12">
+    <testcase classname="Command Handling" name="Command Handling responds to !clearhistory and clears the conversation history" time="0.015">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !help command replies with help message" time="0.001">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !summary command replies with summary" time="0">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !summarise command replies with text summary" time="0">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !summerise command (alternative spelling) replies with text summary" time="0.001">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !summarise command with no text returns usage message" time="0">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !summerise command with no text returns usage message" time="0.001">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !summary command uses UK English in prompt" time="0">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling rate limiting prevents spam" time="0.001">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling unknown command is ignored" time="0.001">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !summary with no conversation history" time="0">
+    </testcase>
+    <testcase classname="Command Handling" name="Command Handling !stats command replies with user stats" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\integration\botEdgeCases.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="2.734" tests="6">
+    <testcase classname="Bot Edge Cases" name="Bot Edge Cases handles empty message" time="0.013">
+    </testcase>
+    <testcase classname="Bot Edge Cases" name="Bot Edge Cases handles very long message and truncates history" time="0.001">
+    </testcase>
+    <testcase classname="Bot Edge Cases" name="Bot Edge Cases handles API failure for chat completions" time="0.002">
+    </testcase>
+    <testcase classname="Bot Edge Cases" name="Bot Edge Cases reacts with correct emoji for hello" time="0.001">
+    </testcase>
+    <testcase classname="Bot Edge Cases" name="Bot Edge Cases does not react for non-keyword" time="0">
+    </testcase>
+    <testcase classname="Bot Edge Cases" name="Bot Edge Cases handles missing environment variables gracefully" time="1.397">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\chat-service-coverage.test.js" errors="0" failures="3" skipped="0" timestamp="2025-07-22T14:32:15" time="2.798" tests="5">
+    <testcase classname="Chat Service Additional Tests Question Processing" name="Chat Service Additional Tests Question Processing should process a question with cache hit" time="0.104">
+      <failure>ChatError: Failed to get answer: Invalid question or answer
+    at Object.processQuestion (C:\Users\chris\aszune-ai\aszune-ai-bot\src\services\chat.js:358:11)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\chat-service-coverage.test.js:37:22)</failure>
+    </testcase>
+    <testcase classname="Chat Service Additional Tests Question Processing" name="Chat Service Additional Tests Question Processing should process a question with cache hit but stale entry" time="0.006">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: &quot;This is a stale cached answer&quot;
+Received: &quot;This is a fresh answer&quot;
+    at Object.toBe (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\chat-service-coverage.test.js:62:22)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</failure>
+    </testcase>
+    <testcase classname="Chat Service Additional Tests Question Processing" name="Chat Service Additional Tests Question Processing should process a question with cache miss" time="0.002">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: &quot;What is a test?&quot;
+
+Number of calls: 0
+    at Object.toHaveBeenCalledWith (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\chat-service-coverage.test.js:84:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</failure>
+    </testcase>
+    <testcase classname="Chat Service Additional Tests Question Processing" name="Chat Service Additional Tests Question Processing should handle API errors gracefully" time="0.002">
+    </testcase>
+    <testcase classname="Chat Service Additional Tests Error Handling" name="Chat Service Additional Tests Error Handling should handle cache errors gracefully" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\commands.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="2.798" tests="20">
+    <testcase classname="Command Handlers getSlashCommandsData" name="Command Handlers getSlashCommandsData should return an array of slash command data" time="0.014">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should handle !help command" time="0.003">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should handle !clearhistory command" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should handle !summary command with history" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should handle !summary command with no history" time="0">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should handle !summary command with only assistant messages in history" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should handle errors during text command execution" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should handle !summary command API error" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should handle !stats command" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleTextCommand" name="Command Handlers handleTextCommand should return null for unknown command" time="0">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle /help command" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle /clearhistory command" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle /summary command with history" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle /summary command API error" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle /summary command with only assistant messages in history" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle /summary command with no history" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle /stats command" time="0">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle command execution error when not deferred" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle unknown command" time="0.001">
+    </testcase>
+    <testcase classname="Command Handlers handleSlashCommand" name="Command Handlers handleSlashCommand should handle command execution error" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\chat-service.test.js" errors="0" failures="3" skipped="0" timestamp="2025-07-22T14:32:15" time="2.867" tests="10">
+    <testcase classname="Chat Service" name="Chat Service handles a normal message and sends a reply" time="0.084">
+    </testcase>
+    <testcase classname="Chat Service" name="Chat Service enforces rate limiting" time="0.001">
+    </testcase>
+    <testcase classname="Chat Service" name="Chat Service skips messages from bots" time="0.001">
+    </testcase>
+    <testcase classname="Chat Service" name="Chat Service handles messages with missing user ID" time="0.011">
+    </testcase>
+    <testcase classname="Chat Service" name="Chat Service handles API errors gracefully" time="0.028">
+    </testcase>
+    <testcase classname="Chat Service" name="Chat Service adds the bot response to conversation history" time="0.003">
+    </testcase>
+    <testcase classname="Chat Service Cache Integration" name="Chat Service Cache Integration checks the cache before calling the API" time="0.004">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: &quot;What is the meaning of life?&quot;
+
+Number of calls: 0
+    at Object.toHaveBeenCalledWith (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\chat-service.test.js:119:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</failure>
+    </testcase>
+    <testcase classname="Chat Service Cache Integration" name="Chat Service Cache Integration uses cached response when available" time="0.004">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: &quot;What is the meaning of life?&quot;
+
+Number of calls: 0
+    at Object.toHaveBeenCalledWith (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\chat-service.test.js:137:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</failure>
+    </testcase>
+    <testcase classname="Chat Service Cache Integration" name="Chat Service Cache Integration adds new responses to the cache" time="0.002">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: &quot;New question&quot;, &quot;AI response&quot;
+
+Number of calls: 0
+    at Object.toHaveBeenCalledWith (C:\Users\chris\aszune-ai\aszune-ai-bot\__tests__\unit\chat-service.test.js:158:39)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</failure>
+    </testcase>
+    <testcase classname="Chat Service Cache Integration" name="Chat Service Cache Integration refreshes stale cache entries in the background" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\unit\cache-service-fixes.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="2.986" tests="5">
+    <testcase classname="Cache Service Fixes" name="Cache Service Fixes cleanup method properly saves pending changes" time="0.254">
+    </testcase>
+    <testcase classname="Cache Service Fixes" name="Cache Service Fixes inverted index improves search performance" time="0.162">
+    </testcase>
+    <testcase classname="Cache Service Fixes" name="Cache Service Fixes file operations are done asynchronously" time="0.12">
+    </testcase>
+    <testcase classname="Cache Service Fixes" name="Cache Service Fixes race condition prevention in addToCache" time="0.041">
+    </testcase>
+    <testcase classname="Cache Service Fixes" name="Cache Service Fixes refresh cache entry has proper retry limits" time="1.222">
+    </testcase>
+  </testsuite>
+  <testsuite name="__tests__\integration\bot.test.js" errors="0" failures="0" skipped="0" timestamp="2025-07-22T14:32:15" time="5.58" tests="16">
+    <testcase classname="Bot integration" name="Bot integration should have attached the messageCreate handler" time="1.435">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration handles a normal message and replies" time="0.271">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration replies to !help command" time="0.212">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration replies to !clearhistory command" time="0.192">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration replies to !summary with history" time="0.2">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration replies to !summary with no history" time="0.167">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration ignores unknown command" time="0.163">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration ignores messages from bots" time="0.169">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration adds emoji reactions for keywords" time="0.161">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration adds multiple emoji reactions for multiple keywords" time="0.169">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration rate limits user messages" time="0.175">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration handles API error when replying" time="0.194">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration handles API error when summarising" time="0.178">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration handles empty message gracefully" time="0.168">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration truncates very long conversation history" time="0.166">
+    </testcase>
+    <testcase classname="Bot integration" name="Bot integration handles missing environment variables gracefully" time="0.342">
+    </testcase>
+  </testsuite>
+</testsuites>

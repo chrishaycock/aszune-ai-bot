@@ -14,6 +14,7 @@ Aszune AI Bot is built using Node.js and the Discord.js library, with the Perple
 4. **Conversation Manager** - Tracks and stores user conversations
 5. **Rate Limiter** - Prevents spam and excessive API usage
 6. **Emoji Manager** - Handles emoji reactions based on keywords
+7. **Smart Answer Cache** - Caches frequent questions and answers to reduce API usage
 
 ## Project Structure
 
@@ -197,52 +198,83 @@ function isRateLimited(userId) {
 }
 ```
 
-## Environment Configuration
+### 6. Smart Answer Cache
 
-The bot uses environment variables for configuration, stored in a `.env` file:
-
-```env
-DISCORD_BOT_TOKEN=your_discord_bot_token_here
-PERPLEXITY_API_KEY=your_perplexity_api_key_here
-```
-
-## Testing Framework
-
-The project uses Jest for testing, with separate test files for each module:
+The cache system is designed to store and retrieve frequent questions and answers to reduce API token usage.
 
 ```javascript
-// Example test for the emoji utility
-const { addEmojiReactions } = require("../src/utils/emojiUtils");
+// Simplified example
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+const LRUCache = require('lru-cache');
 
-describe("Emoji Utilities", () => {
-  test('should add correct emoji for keyword "hello"', async () => {
-    const message = {
-      content: "Hello everyone!",
-      react: jest.fn().mockResolvedValue(true),
+class CacheService {
+  constructor() {
+    this.cache = {};
+    this.initialized = false;
+    this.memoryCache = new LRUCache({ max: 500 }); // In-memory LRU cache
+  }
+  
+  // Initialize cache from disk storage
+  init() {
+    if (this.initialized) return;
+    
+    try {
+      // Load cache from disk or create new
+      if (fs.existsSync(CACHE_FILE_PATH)) {
+        const cacheData = fs.readFileSync(CACHE_FILE_PATH, 'utf8');
+        this.cache = JSON.parse(cacheData);
+      } else {
+        this.saveCache();
+      }
+      this.initialized = true;
+    } catch (error) {
+      // Handle errors
+      this.cache = {};
+      this.saveCache();
+    }
+  }
+  
+  // Find a cached response for a question
+  findInCache(question) {
+    // Try direct hash lookup first
+    const hash = this.generateHash(question);
+    if (this.cache[hash]) {
+      return this.cache[hash];
+    }
+    
+    // If no direct match, try similarity matching
+    return this.findSimilar(question);
+  }
+  
+  // Add a question-answer pair to the cache
+  addToCache(question, answer) {
+    const hash = this.generateHash(question);
+    this.cache[hash] = {
+      question,
+      answer,
+      timestamp: Date.now()
     };
-
-    await addEmojiReactions(message);
-    expect(message.react).toHaveBeenCalledWith("👋");
-  });
-});
+    this.saveCache();
+  }
+}
 ```
 
-## Performance Considerations
+#### Cache Features
 
-- Uses JavaScript `Map` for conversation history and rate limiting for efficient lookups
-- Implements proper error handling for API calls
-- Uses async/await for non-blocking operations
+- **Two-level caching**: Fast in-memory LRU cache backed by persistent disk storage
+- **Similarity matching**: Finds answers to questions that are worded differently but mean the same thing
+- **Automatic pruning**: Removes old or rarely accessed entries to keep the cache size manageable
+- **Stale entry refreshing**: Automatically refreshes cached answers that are older than a configured threshold
+- **Configurable thresholds**: Adjustable settings for memory usage, disk usage, similarity threshold, etc.
+- **Optional feature**: Can be completely disabled via environment variable `ASZUNE_ENABLE_SMART_CACHE=false`
 
-## Security Considerations
+#### Raspberry Pi Optimization
 
-- Sensitive information is stored in environment variables, not in code
-- API keys and tokens are never exposed in responses
-- Rate limiting prevents abuse
-- Input validation is performed before processing commands
+For users running the bot on Raspberry Pi devices with limited resources, we provide optimized settings in the `raspberry-pi-cache-config.md` file. These settings reduce memory usage and disk I/O:
 
-## Future Technical Enhancements
-
-- Database integration for persistent conversation storage
-- Webhook support for external integrations
-- Support for more complex conversation flows
-- Enhanced error handling with automatic recovery
+- Reduced memory cache size (100 items instead of 500)
+- Smaller maximum cache size (2,000 entries instead of 10,000)
+- More aggressive LRU pruning thresholds
+- Increased save interval to reduce disk writes

@@ -1,31 +1,46 @@
 {
   "name": "aszuneai",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest --coverage",
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --coverage --ci --forceExit --testResultsProcessor=jest-junit",
+    "test:property": "jest -t 'Property-based tests'",
+    "lint": "eslint src __tests__",
+    "lint:fix": "eslint src __tests__ --fix",
+    "format:md": "prettier --write '**/*.md'",
+    "format": "prettier --write 'src/**/*.js' '__tests__/**/*.js'",
+    "format:check": "prettier --check 'src/**/*.js' '__tests__/**/*.js'",
+    "security": "npm audit --audit-level moderate",
+    "security:prod": "npm audit --audit-level high --production",
+    "prepare": "husky install || echo 'Husky is not supported in this environment'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powerfulqa/aszune-ai-bot.git"
+  },
   "dependencies": {
+    "async-mutex": "^0.5.0",
     "axios": "^1.8.4",
     "discord.js": "^14.18.0",
-    "dotenv": "^16.4.7"
-  },  "devDependencies": {
-    "codecov": "^3.8.2",
+    "dotenv": "^16.4.7",
+    "lru-cache": "^7.18.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "fast-check": "^3.23.2",
+    "husky": "^9.0.11",
     "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.6.2"
-  },
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "test": "jest",
-    "format:md": "prettier --write '**/*.md'",
-    "format": "prettier --write 'src/**/*.js' '__tests__/**/*.js'"
   }
 }
